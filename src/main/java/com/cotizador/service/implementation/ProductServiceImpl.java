@@ -71,4 +71,13 @@ public class ProductServiceImpl implements ProductService {
         return new ApiResponse(Message.PRODUCT_UPDATE_SUCCESSFULLY, 201, HttpStatus.OK, LocalDateTime.now());
     }
 
+    @Override
+    public List<ProductDto> findAllProductsByName(String name) {
+        List<Product> products = productRepository.findAllProductsByName(name);
+        if (!products.isEmpty()) {
+            return products.stream().map((dto) -> new ProductDto(dto.getSKU(), dto.getName(), dto.getDescription(), dto.getPrice())).toList();
+        }
+        throw new ProductNotFoundException(Message.PRODUCT_NOT_FOUND, 404, HttpStatus.NOT_FOUND, LocalDateTime.now());
+    }
+
 }

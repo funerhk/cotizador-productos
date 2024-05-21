@@ -11,4 +11,5 @@ public interface ProductService {
     ApiResponse delete(String productId);
     ApiResponse save(ProductDto dto);
     ApiResponse update(String productId, ProductDto dto);
+    List<ProductDto> findAllProductsByName(String name);
 }
