@@ -39,4 +39,9 @@ public class ProductController {
     public ResponseEntity<ApiResponse> updateProduct(@PathVariable(name = "productId") String productId, @RequestBody ProductDto productDto) {
         return ResponseEntity.ok(service.update(productId, productDto));
     }
+
+    @GetMapping("/search/{name}")
+    public ResponseEntity<List<ProductDto>> searchProduct(@PathVariable(name = "name") String name) {
+        return ResponseEntity.ok(service.findAllProductsByName(name));
+    }
 }
